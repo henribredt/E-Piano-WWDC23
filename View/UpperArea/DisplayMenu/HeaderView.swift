@@ -11,12 +11,46 @@ struct HeaderView: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        if let headerText = appState.currentMenuState.headerText {
-            Text(headerText)
+        VStack{
+            if let headerText = appState.currentMenuState.headerText {
+                HStack{
+                    HStack(spacing: 4){
+                        if appState.currentNoteToDisplay != nil {
+                            Image(systemName: "music.note")
+                                .imageScale(.small)
+                            Text(appState.currentNoteToDisplay!.getHelpLabel())
+                        }
+                        Spacer()
+                    }
+                    .frame(width: 50)
+                    // reset label after one second
+                    .task(id: appState.currentNoteToDisplay){
+                        if appState.currentNoteToDisplay != nil {
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.35){
+                                appState.currentNoteToDisplay = nil
+                            }
+                        }
+                    }
+                    
+                    Spacer()
+                    Text(headerText)
+                    Spacer()
+                    
+                    HStack(spacing: 4){
+                        Spacer()
+                        if appState.showHelp {
+                            Image(systemName: "eye.fill")
+                        }
+                           
+                    }
+                    .frame(width: 50)
+                }
                 .font(.system(.footnote, design: .monospaced))
-            Rectangle()
-                .fill(Color("DarkGray"))
-                .frame(maxWidth: .infinity, minHeight: 1.5, maxHeight: 1.5)
+                
+                Rectangle()
+                    .fill(Color("DarkGray"))
+                    .frame(maxWidth: .infinity, minHeight: 1.5, maxHeight: 1.5)
+            }
         }
     }
 }

@@ -63,11 +63,6 @@ struct ContentView: View {
                                     }
                                 }
                                 
-                                MenuButtonView(label: "option", isPowerButton: false) {
-                                    appState.currentMenuState.showNextMenuState()
-                                    SoundEngine.buttonSound()
-                                }
-                                
                                 MenuButtonView(label: "info", isPowerButton: false) {
                                     if appState.currentMenuState.playingHelpAllowed() {
                                         appState.showHelp.toggle()
@@ -78,7 +73,13 @@ struct ContentView: View {
                                         appState.currentMenuState = MenuState.flow[0]
                                         SoundEngine.buttonSound()
                                     }
-                                    
+                                }
+                                
+                                MenuButtonView(label: "enter", isPowerButton: false) {
+                                    if appState.isOn{
+                                        appState.currentMenuState.showNextMenuState()
+                                        SoundEngine.buttonSound()
+                                    }
                                 }
                             }
                             Spacer()

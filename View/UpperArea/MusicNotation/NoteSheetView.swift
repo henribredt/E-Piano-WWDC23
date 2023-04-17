@@ -49,6 +49,13 @@ struct NoteSheetView: View {
                     }
                     
                     if appState.currentPracticeNoteIndex >= appState.practiceNotes?.count ?? 0 {
+                       
+                        // multi page sheet: show immediately next sheet
+                        if appState.currentMenuState.isMultiStateMusicSheet {
+                            appState.currentMenuState.showNextMenuState()
+                            return
+                        }
+                        
                         // end
                         DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
                             SoundEngine.playCelebration()

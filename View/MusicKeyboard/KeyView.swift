@@ -28,6 +28,7 @@ struct KeyView: View {
        GeometryReader { geo in
             Button {
                 appState.currentNote = note
+                appState.currentNoteToDisplay = note
                 SoundEngine.play(note: note)
             } label: {
                 ZStack(alignment: .bottom){
