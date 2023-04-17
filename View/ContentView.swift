@@ -16,9 +16,16 @@ struct ContentView: View {
                         
                         HStack{
                             Spacer()
+                            
+                            // Display
                             VStack{
                                 Spacer()
                                 DisplayShapeView(geo: geo, upperGeo: upperGeo)
+                                    .task(id: appState.currentMenuState){
+                                        appState.practiceNotes = appState.currentMenuState.notes
+                                        appState.currentPracticeNoteIndex = 0
+                                        appState.currentNote = nil
+                                    }
                                 // Menu
                                     .overlay{
                                         VStack {
@@ -38,92 +45,31 @@ struct ContentView: View {
                                     }
                                 Spacer()
                             }
+                            
+                            
                             Spacer()
                             VStack(alignment: .leading, spacing: 30){
-                                HStack{
-                                    Button {
-                                        if appState.isOn {
-                                            appState.isOn.toggle()
-                                            appState.currentMenuState = MenuState.flow[0]
-                                            SoundEngine.buttonSound()
-                                        } else {
-                                            appState.isOn.toggle()
-                                            appState.currentMenuState = MenuState.flow[1]
-                                            SoundEngine.playCelebration()
-                                        }
-                                    } label: {
-                                        Rectangle()
-                                            .fill(LinearGradient(
-                                                gradient: .init(colors: [Color.white, Color("UIGray")]),
-                                                startPoint: .init(x: 0.5, y: 0),
-                                                endPoint: .init(x: 0.5, y: 0.6)
-                                            ))
-                                            .cornerRadius(100)
-                                            .frame(width: 90, height: 30)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 100)
-                                                    .stroke(Color("DarkGray"), lineWidth: 2)
-                                            )
-                                            .overlay {
-                                                RoundedRectangle(cornerRadius: 100)
-                                                    .frame(width: 55, height: 6)
-                                                    .foregroundColor(appState.isOn ? .red.opacity(0.8) : .gray.opacity(0.9))
-                                                    .shadow(color: .red.opacity(appState.isOn ? 0.8 : 0.0), radius: 3)
-                                            }
+                              
+                                MenuButtonView(label: "power", isPowerButton: true) {
+                                    if appState.isOn {
+                                        appState.isOn.toggle()
+                                        appState.currentMenuState = MenuState.flow[1]
+                                        SoundEngine.buttonSound()
+                                    } else {
+                                        appState.isOn.toggle()
+                                        appState.currentMenuState = MenuState.flow[2]
+                                        SoundEngine.playCelebration()
                                     }
-                                    Text("POWER")
-                                        .font(.system(.footnote, design: .monospaced))
-                                        .foregroundColor(Color("DarkGray"))
-                                        .padding(.leading)
                                 }
                                 
-                                
-                                HStack{
-                                    Button {
-                                        appState.currentMenuState.optionButtonAction()
-                                        SoundEngine.buttonSound()
-                                    } label: {
-                                        Rectangle()
-                                            .fill(LinearGradient(
-                                                gradient: .init(colors: [Color.white, Color("UIGray")]),
-                                                startPoint: .init(x: 0.5, y: 0),
-                                                endPoint: .init(x: 0.5, y: 0.6)
-                                            ))
-                                            .cornerRadius(100)
-                                            .frame(width: 90, height: 30)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 100)
-                                                    .stroke(Color("DarkGray"), lineWidth: 2)
-                                            )
-                                    }
-                                    Text("OPTION")
-                                        .font(.system(.footnote, design: .monospaced))
-                                        .foregroundColor(Color("DarkGray"))
-                                        .padding(.leading)
+                                MenuButtonView(label: "option", isPowerButton: false) {
+                                    appState.currentMenuState.showNextMenuState()
+                                    SoundEngine.buttonSound()
                                 }
                                 
-                                HStack{
-                                    Button {
-                                        //
-                                        SoundEngine.buttonSound()
-                                    } label: {
-                                        Rectangle()
-                                            .fill(LinearGradient(
-                                                gradient: .init(colors: [Color.white, Color("UIGray")]),
-                                                startPoint: .init(x: 0.5, y: 0),
-                                                endPoint: .init(x: 0.5, y: 0.6)
-                                            ))
-                                            .cornerRadius(100)
-                                            .frame(width: 90, height: 30)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 100)
-                                                    .stroke(Color("DarkGray"), lineWidth: 2)
-                                            )
-                                    }
-                                    Text("INFO")
-                                        .font(.system(.footnote, design: .monospaced))
-                                        .foregroundColor(Color("DarkGray"))
-                                        .padding(.leading)
+                                MenuButtonView(label: "info", isPowerButton: false) {
+                                    appState.showHelp.toggle()
+                                    SoundEngine.buttonSound()
                                 }
                             }
                             Spacer()
@@ -134,80 +80,11 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 1)
                 
-                HStack(spacing: 10){
-                    VStack(alignment: .leading, spacing: 3){
-                        Text("Craig ePianighi 23").bold()
-                        Text("Educational E-Piano")
-                    }
-                    .font(.system(.footnote, design: .monospaced))
-                    .foregroundColor(Color("DarkGray"))
-                    .padding(.leading)
-                    Spacer()
-                    Button {
-                        sizeDivisor += 0.5
-                        SoundEngine.buttonSound()
-                    } label: {
-                        Rectangle()
-                            .fill(LinearGradient(
-                                gradient: .init(colors: [Color.white, Color("UIGray")]),
-                                startPoint: .init(x: 0.5, y: 0),
-                                endPoint: .init(x: 0.5, y: 0.6)
-                            ))
-                            .cornerRadius(5)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color("DarkGray"), lineWidth: 2)
-                            )
-                            .overlay(
-                                Image(systemName: "minus.magnifyingglass")
-                                    .foregroundColor(Color("DarkGray"))
-                                    .font(.title3)
-                                    .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
-                            )
-                            .frame(width: 90)
-                            .padding(.vertical, 10)
-                            .padding(.trailing, 6)
-                    }
-                    .disabled(sizeDivisor >= 6.5)
-                    
-                    
-                    Button {
-                        sizeDivisor -= 0.5
-                        SoundEngine.buttonSound()
-                    } label: {
-                        Rectangle()
-                            .fill(LinearGradient(
-                                gradient: .init(colors: [Color.white, Color("UIGray")]),
-                                startPoint: .init(x: 0.5, y: 0),
-                                endPoint: .init(x: 0.5, y: 0.6)
-                            ))
-                            .cornerRadius(5)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color("DarkGray"), lineWidth: 2)
-                            )
-                            .overlay(
-                                Image(systemName: "plus.magnifyingglass")
-                                    .foregroundColor(Color("DarkGray"))
-                                    .font(.title3)
-                                    .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
-                            )
-                            .frame(width: 90)
-                            .padding(.vertical, 10)
-                            .padding(.trailing, 6)
-                    }
-                    .disabled(sizeDivisor <= 4)
-                    .padding(.trailing, 9)
-                }
-                .frame(width: geo.size.width, height: 60)
-                .background(){
-                    Rectangle()
-                        .fill(Color("UIGray"))
-                    
-                        .shadow(color: .red.opacity(0.5), radius: 5, y: 10)
-                        .zIndex(10)
-                }
-                
+                AboveKeyboardButtonBar(geo: geo, sizeDivisor: $sizeDivisor)
+//                    I can't fix the wired button animation, mmmm :/
+//                    .animation(.none)
+                   
+                // Keyboard
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: 3){
                         ForEach(Octave.allCases, id: \.self) { octave in
@@ -230,17 +107,6 @@ struct ContentView: View {
         .ignoresSafeArea()
     }
     
-    var key: some View {
-        Button {
-            print("pressed")
-        } label: {
-            
-            Image("KeyWhite_rightCutout")
-                .resizable()
-                .scaledToFit()
-        }
-        
-    }
 }
 
 @available(iOS 16.0, *)

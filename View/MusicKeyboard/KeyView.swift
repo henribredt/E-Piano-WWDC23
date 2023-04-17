@@ -41,6 +41,7 @@ struct KeyView: View {
                         .opacity(kind != .black ? 0.15 : 0.35)
                 }
                 .frame(width: width, height: kind != .black ? height : height/1.85)
+                .opacity(appState.showHelp && !(appState.practiceNotes?[appState.currentPracticeNoteIndex] == note) ? 0.5 : 1 )
             }
        }
        .frame(width: width)

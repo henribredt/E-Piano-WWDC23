@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NoteSheetView: View {
+    @EnvironmentObject var appState: AppState
     
     let noteHeight: CGFloat
     let notes: [Note]
@@ -21,7 +22,7 @@ struct NoteSheetView: View {
             }
             .overlay {
                 HStack(spacing: noteHeight*2){
-                    ForEach(notes) { note in
+                    ForEach(Array(notes.enumerated()), id: \.offset) { index, note in
                         NoteShape(helpLine: getNoteNeedsHelpLine(note: note))
                             .offset(y: getNoteOffsetInViolinClef(note: note)*noteHeight)
                             .aspectRatio(250/145, contentMode: .fill)
@@ -31,6 +32,33 @@ struct NoteSheetView: View {
                                 Text(note.getHelpLabel())
                                     .offset(y: -3.5*noteHeight)
                             }
+                            .opacity(appState.currentPracticeNoteIndex > index ? 0.5 : 1 )
+                    }
+                }
+            }
+//            .task(id: appState.currentMenuState) {
+//                appState.practiceNotes = notes
+//                appState.currentNote = nil
+//                appState.currentPracticeNoteIndex = 0
+//            }
+            .onChange(of: appState.currentNote) { currentNote in
+                if currentNote == appState.practiceNotes?[appState.currentPracticeNoteIndex] {
+                    
+                    if appState.currentPracticeNoteIndex < appState.practiceNotes?.count ?? 0 {
+                        appState.currentPracticeNoteIndex += 1
+                    }
+                    
+                    if appState.currentPracticeNoteIndex >= appState.practiceNotes?.count ?? 0 {
+                        // end
+                        DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
+                            SoundEngine.playCelebration()
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                                appState.currentMenuState.showNextMenuState()
+                            }
+                        }
+                    } else {
+                        // next
+                        appState.currentNote = nil
                     }
                 }
             }
