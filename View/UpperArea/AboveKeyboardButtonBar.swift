@@ -8,17 +8,26 @@ struct AboveKeyboardButtonBar: View {
     var body: some View {
         HStack(spacing: 10){
             VStack(alignment: .leading, spacing: 3){
-                Text("Craig ePianighi 23").bold()
+                Text("ePianighi \"Craig 23\"").bold()
                 Text("Educational E-Piano")
             }
             .font(.system(.footnote, design: .monospaced))
             .foregroundColor(Color("DarkGray"))
             .padding(.leading)
             Spacer()
+            
+            ResizingButtonView(sizeDivisor: $sizeDivisor, icon: "info.circle") {
+                AppState.shared.showKeyboardHelpLabels.toggle()
+            }
     
-            ResizingButtonView(isZoom: false, sizeDivisor: $sizeDivisor)
+            ResizingButtonView(sizeDivisor: $sizeDivisor, icon: "minus.magnifyingglass") {
+                sizeDivisor += 0.5
+            }
                 .disabled(sizeDivisor >= 6.5)
-            ResizingButtonView(isZoom: true, sizeDivisor: $sizeDivisor)
+            
+            ResizingButtonView(sizeDivisor: $sizeDivisor, icon: "plus.magnifyingglass") {
+                sizeDivisor -= 0.5
+            }
                 .disabled(sizeDivisor <= 4)
                 .padding(.trailing, 9)
         }

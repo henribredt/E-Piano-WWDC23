@@ -26,6 +26,7 @@ struct ContentView: View {
                                         appState.currentPracticeNoteIndex = 0
                                         appState.currentNote = nil
                                         appState.showHelp = false
+                                        appState.showHelpLabels = appState.currentMenuState.showUIHelpLabels
                                     }
                                 // Menu
                                     .overlay{

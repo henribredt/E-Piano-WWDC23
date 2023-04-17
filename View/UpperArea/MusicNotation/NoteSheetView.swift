@@ -29,18 +29,15 @@ struct NoteSheetView: View {
                             .frame(width: noteHeight*145/250, height: noteHeight)
                             .overlay {
                                 // help label
-                                Text(note.getHelpLabel())
-                                    .offset(y: -3.5*noteHeight)
+                                if appState.showHelpLabels {
+                                    Text(note.getHelpLabel())
+                                        .offset(y: -3.5*noteHeight)
+                                }
                             }
                             .opacity(appState.currentPracticeNoteIndex > index ? 0.5 : 1 )
                     }
                 }
             }
-//            .task(id: appState.currentMenuState) {
-//                appState.practiceNotes = notes
-//                appState.currentNote = nil
-//                appState.currentPracticeNoteIndex = 0
-//            }
             .onChange(of: appState.currentNote) { currentNote in
                 if currentNote == appState.currentPracticeNote() {
                     

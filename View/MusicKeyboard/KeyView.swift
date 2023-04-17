@@ -35,11 +35,13 @@ struct KeyView: View {
                     Image(kind.rawValue)
                         .resizable()
                         .scaledToFit()
-                    Text(label)
-                        .padding(.bottom, geo.size.height/9)
-                        .font(kind != .black ? .title3.bold() : .caption.bold())
-                        .foregroundColor(kind != .black ? .black : .white)
-                        .opacity(kind != .black ? 0.15 : 0.35)
+                    if appState.showHelpLabels && appState.showKeyboardHelpLabels {
+                        Text(label)
+                            .padding(.bottom, geo.size.height/9)
+                            .font(kind != .black ? .title3.bold() : .caption.bold())
+                            .foregroundColor(kind != .black ? .black : .white)
+                            .opacity(kind != .black ? 0.15 : 0.35)
+                    }
                 }
                 .frame(width: width, height: kind != .black ? height : height/1.85)
                 .opacity(appState.showHelp && !(appState.currentPracticeNote() == note) ? 0.5 : 1 )

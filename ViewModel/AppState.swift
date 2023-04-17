@@ -16,6 +16,11 @@ class AppState: ObservableObject {
     @Published var isOn: Bool = false
     @Published var showHelp: Bool = false
     
+    // used to determine if key help labels and note help labels are shown
+    @Published var showHelpLabels: Bool = true
+    // used to override showHelpLabels for the keyboard
+    @Published var showKeyboardHelpLabels: Bool = true
+    
     // track practice on note sheet progress
     @Published var practiceNotes : [Note]? = nil
     @Published var currentPracticeNoteIndex: Int = 0
