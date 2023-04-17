@@ -9,4 +9,6 @@ import SwiftUI
 
 class AppState: ObservableObject {
     @Published var currentNote: Note? = nil
+    
+    @Published var isOn: Bool = false
 }

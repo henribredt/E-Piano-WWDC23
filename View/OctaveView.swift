@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-enum Octave: String, CaseIterable, Identifiable {
-    case small = "small", oneLine = "oneLine", twoLine = "twoLine"
-    var id: String { return self.rawValue }
-}
-
 struct OctaveView: View {
     let drawingHeight: CGFloat
     let octave: Octave
@@ -55,5 +50,8 @@ struct OctaveView: View {
 struct OctaveView_Previews: PreviewProvider {
     static var previews: some View {
         OctaveView(drawingHeight: 300, octave: .oneLine)
+            .padding()
+            .frame(width: 550, height: 330)
+            .previewLayout(.sizeThatFits)
     }
 }

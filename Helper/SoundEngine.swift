@@ -32,6 +32,11 @@ struct SoundEngine {
         playSound(resource: "toggle_on", type: "wav")
     }
     
+    static func playCelebration() {
+        player?.stop()
+        playSound(resource: "celebration", type: "wav")
+    }
+    
     static func play(note: Note){
         player?.stop()
         playSound(resource: note.rawValue, type: "mp3")

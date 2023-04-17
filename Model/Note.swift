@@ -1,10 +1,3 @@
-//
-//  Notes.swift
-//  WWDC23
-//
-//  Created by Henri Bredt on 16.04.23.
-//
-
 import Foundation
 
 enum Note: String {
