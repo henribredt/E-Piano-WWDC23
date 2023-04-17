@@ -1,6 +1,6 @@
 import Foundation
 
-enum Note: String {
+enum Note: String, Identifiable {
     case small_C = "small_C",
          small_D = "small_D",
          small_E = "small_E",
@@ -40,5 +40,19 @@ enum Note: String {
          twoLine_G_Sharp = "twoLine_G_Sharp",
          twoLine_A_Sharp = "twoLine_A_Sharp"
 
-
+    var id: String { return self.rawValue }
+    
+    func getHelpLabel() -> String {
+        var helpText = self.rawValue
+        helpText = helpText.replacingOccurrences(of: "_Sharp", with: "", options: [.caseInsensitive, .regularExpression])
+        helpText = helpText.replacingOccurrences(of: "twoLine_", with: "", options: [.caseInsensitive, .regularExpression])
+        helpText = helpText.replacingOccurrences(of: "oneLine_", with: "", options: [.caseInsensitive, .regularExpression])
+        helpText = helpText.replacingOccurrences(of: "small_", with: "", options: [.caseInsensitive, .regularExpression])
+        
+        if self.rawValue.contains("Sharp") {
+            helpText.append("#")
+        }
+        
+        return helpText
+    }
 }

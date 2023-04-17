@@ -8,7 +8,10 @@
 import SwiftUI
 
 class AppState: ObservableObject {
+    public static let shared = AppState()
+    
     @Published var currentNote: Note? = nil
+    @Published var currentMenuState: MenuState = MenuState.flow.first!
     
     @Published var isOn: Bool = false
 }

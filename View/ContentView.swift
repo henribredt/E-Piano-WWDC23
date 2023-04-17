@@ -18,60 +18,23 @@ struct ContentView: View {
                             Spacer()
                             VStack{
                                 Spacer()
-                                Rectangle()
-                                    .fill(
-                                        Color("DisplayColor")
-                                            .shadow(.inner(radius: 2, x: 10, y: 15))
-                                            .shadow(.inner(radius: 6, x: -1, y: -1))
-                                        
-                                    )
-                                    .frame(width: geo.size.width/1.8, height: upperGeo.size.height/1.2)
-                                    .cornerRadius(6)
-                                    .shadow(radius: 5)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color("DarkGray"), lineWidth: 2)
-                                        //.stroke(Color("UIGray"), lineWidth: 5)
-                                    )
+                                DisplayShapeView(geo: geo, upperGeo: upperGeo)
+                                // Menu
                                     .overlay{
-                                        VStack{
-                                            Text("WELCOME")
+                                        VStack {
+                                            HeaderView()
+                                            if appState.isOn { Spacer() }
+                                            appState.currentMenuState.view
+                                                .multilineTextAlignment(.center)
                                                 .font(.system(.body, design: .monospaced))
-                                            Rectangle()
-                                                .fill(Color("DarkGray"))
-                                                .frame(maxWidth: .infinity, minHeight: 2, maxHeight: 2)
-                                                
-                                            Spacer()
-                                            if appState.isOn {
-                                                Text(appState.currentNote?.rawValue ?? "Play a note")
-                                                    .font(.system(.body, design: .monospaced))
-    
-                                            }  else {
-                                                Text("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla faciliss")
-                                                    .font(.system(.body, design: .monospaced))
-                                            }
-                                            Spacer()
-                                            
-                                            
-                                            HStack(spacing: 10){
-                                                Text("Press")
-                                                    .font(.system(.footnote, design: .monospaced))
-                                                Text("OPTION 1")
-                                                    .font(.system(.caption2, design: .monospaced, weight: .medium))
-                                                    .padding(EdgeInsets(top: 3, leading: 9, bottom: 3, trailing: 9))
-                                                    .overlay{
-                                                        RoundedRectangle(cornerRadius: 100)
-                                                            .stroke(Color("DarkGray"), lineWidth: 1.2)
-                                                            
-                                                    }
-                                                Text("to start")
-                                                    .font(.system(.footnote, design: .monospaced))
-                                            }
+                                                .lineSpacing(3)
+                                            if appState.isOn { Spacer() }
+                                            HelpLabelView()
                                         }
                                         .foregroundColor(Color("DarkGray"))
-                                        .opacity(0.75)
                                         .shadow(color: .black.opacity(0.4), radius: 2, x: 2, y: 3)
-                                        .padding(30)
+                                        .opacity(0.75)
+                                        .padding(25)
                                     }
                                 Spacer()
                             }
@@ -80,9 +43,14 @@ struct ContentView: View {
                                 HStack{
                                     Button {
                                         if appState.isOn {
+                                            appState.isOn.toggle()
+                                            appState.currentMenuState = MenuState.flow[0]
                                             SoundEngine.buttonSound()
+                                        } else {
+                                            appState.isOn.toggle()
+                                            appState.currentMenuState = MenuState.flow[1]
+                                            SoundEngine.playCelebration()
                                         }
-                                        appState.isOn.toggle()
                                     } label: {
                                         Rectangle()
                                             .fill(LinearGradient(
@@ -112,7 +80,7 @@ struct ContentView: View {
                                 
                                 HStack{
                                     Button {
-                                        //
+                                        appState.currentMenuState.optionButtonAction()
                                         SoundEngine.buttonSound()
                                     } label: {
                                         Rectangle()
@@ -128,31 +96,7 @@ struct ContentView: View {
                                                     .stroke(Color("DarkGray"), lineWidth: 2)
                                             )
                                     }
-                                    Text("OPTION 1")
-                                        .font(.system(.footnote, design: .monospaced))
-                                        .foregroundColor(Color("DarkGray"))
-                                        .padding(.leading)
-                                }
-                                
-                                HStack{
-                                    Button {
-                                        //
-                                        SoundEngine.buttonSound()
-                                    } label: {
-                                        Rectangle()
-                                            .fill(LinearGradient(
-                                                gradient: .init(colors: [Color.white, Color("UIGray")]),
-                                                startPoint: .init(x: 0.5, y: 0),
-                                                endPoint: .init(x: 0.5, y: 0.6)
-                                            ))
-                                            .cornerRadius(100)
-                                            .frame(width: 90, height: 30)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 100)
-                                                    .stroke(Color("DarkGray"), lineWidth: 2)
-                                            )
-                                    }
-                                    Text("OPTION 2")
+                                    Text("OPTION")
                                         .font(.system(.footnote, design: .monospaced))
                                         .foregroundColor(Color("DarkGray"))
                                         .padding(.leading)
@@ -204,25 +148,25 @@ struct ContentView: View {
                         SoundEngine.buttonSound()
                     } label: {
                         Rectangle()
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [Color.white, Color("UIGray")]),
-                            startPoint: .init(x: 0.5, y: 0),
-                            endPoint: .init(x: 0.5, y: 0.6)
-                        ))
-                        .cornerRadius(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color("DarkGray"), lineWidth: 2)
-                        )
-                        .overlay(
-                            Image(systemName: "minus.magnifyingglass")
-                                .foregroundColor(Color("DarkGray"))
-                                .font(.title3)
-                                .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
-                        )
-                        .frame(width: 90)
-                        .padding(.vertical, 10)
-                        .padding(.trailing, 6)
+                            .fill(LinearGradient(
+                                gradient: .init(colors: [Color.white, Color("UIGray")]),
+                                startPoint: .init(x: 0.5, y: 0),
+                                endPoint: .init(x: 0.5, y: 0.6)
+                            ))
+                            .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color("DarkGray"), lineWidth: 2)
+                            )
+                            .overlay(
+                                Image(systemName: "minus.magnifyingglass")
+                                    .foregroundColor(Color("DarkGray"))
+                                    .font(.title3)
+                                    .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
+                            )
+                            .frame(width: 90)
+                            .padding(.vertical, 10)
+                            .padding(.trailing, 6)
                     }
                     .disabled(sizeDivisor >= 6.5)
                     
@@ -232,25 +176,25 @@ struct ContentView: View {
                         SoundEngine.buttonSound()
                     } label: {
                         Rectangle()
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [Color.white, Color("UIGray")]),
-                            startPoint: .init(x: 0.5, y: 0),
-                            endPoint: .init(x: 0.5, y: 0.6)
-                        ))
-                        .cornerRadius(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color("DarkGray"), lineWidth: 2)
-                        )
-                        .overlay(
-                            Image(systemName: "plus.magnifyingglass")
-                                .foregroundColor(Color("DarkGray"))
-                                .font(.title3)
-                                .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
-                        )
-                        .frame(width: 90)
-                        .padding(.vertical, 10)
-                        .padding(.trailing, 6)
+                            .fill(LinearGradient(
+                                gradient: .init(colors: [Color.white, Color("UIGray")]),
+                                startPoint: .init(x: 0.5, y: 0),
+                                endPoint: .init(x: 0.5, y: 0.6)
+                            ))
+                            .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color("DarkGray"), lineWidth: 2)
+                            )
+                            .overlay(
+                                Image(systemName: "plus.magnifyingglass")
+                                    .foregroundColor(Color("DarkGray"))
+                                    .font(.title3)
+                                    .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
+                            )
+                            .frame(width: 90)
+                            .padding(.vertical, 10)
+                            .padding(.trailing, 6)
                     }
                     .disabled(sizeDivisor <= 4)
                     .padding(.trailing, 9)
@@ -279,12 +223,6 @@ struct ContentView: View {
                     Color.black
                 }
             }
-            .onChange(of: appState.isOn) { isOn in
-                if isOn {
-                    SoundEngine.playCelebration()
-                }
-            }
-            
         }
         .background{
             Color.black
