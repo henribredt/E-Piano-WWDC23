@@ -19,5 +19,16 @@ class AppState: ObservableObject {
     @Published var practiceNotes : [Note]? = nil
     @Published var currentPracticeNoteIndex: Int = 0
     
+    
+    func currentPracticeNote() -> Note? {
+        if let notes = practiceNotes {
+            guard currentPracticeNoteIndex < notes.count else {
+                print("Index \(currentPracticeNoteIndex) not found in practiceNotes with \(practiceNotes?.count ?? -1) items. Returning nil")
+                return nil
+            }
+            return notes[currentPracticeNoteIndex]
+        }
+        return nil
+    }
 }
 

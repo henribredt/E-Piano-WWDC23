@@ -25,6 +25,7 @@ struct ContentView: View {
                                         appState.practiceNotes = appState.currentMenuState.notes
                                         appState.currentPracticeNoteIndex = 0
                                         appState.currentNote = nil
+                                        appState.showHelp = false
                                     }
                                 // Menu
                                     .overlay{
@@ -68,8 +69,16 @@ struct ContentView: View {
                                 }
                                 
                                 MenuButtonView(label: "info", isPowerButton: false) {
-                                    appState.showHelp.toggle()
-                                    SoundEngine.buttonSound()
+                                    if appState.currentMenuState.playingHelpAllowed() {
+                                        appState.showHelp.toggle()
+                                        SoundEngine.buttonSound()
+                                    }
+                                    
+                                    if appState.currentMenuState == MenuState.flow[2] {
+                                        appState.currentMenuState = MenuState.flow[0]
+                                        SoundEngine.buttonSound()
+                                    }
+                                    
                                 }
                             }
                             Spacer()

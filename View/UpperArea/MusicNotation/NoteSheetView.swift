@@ -42,7 +42,7 @@ struct NoteSheetView: View {
 //                appState.currentPracticeNoteIndex = 0
 //            }
             .onChange(of: appState.currentNote) { currentNote in
-                if currentNote == appState.practiceNotes?[appState.currentPracticeNoteIndex] {
+                if currentNote == appState.currentPracticeNote() {
                     
                     if appState.currentPracticeNoteIndex < appState.practiceNotes?.count ?? 0 {
                         appState.currentPracticeNoteIndex += 1

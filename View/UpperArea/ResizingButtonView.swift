@@ -26,7 +26,7 @@ struct ResizingButtonView: View {
                         .stroke(Color("DarkGray"), lineWidth: 2)
                 )
                 .overlay(
-                    Image(systemName: isZoom ? "plus.magnifyingglass" : "plus.magnifyingglass")
+                    Image(systemName: isZoom ? "plus.magnifyingglass" : "minus.magnifyingglass")
                         .foregroundColor(Color("DarkGray"))
                         .font(.title3)
                         .padding(EdgeInsets(top: 6, leading: 18, bottom: 6, trailing: 18))
