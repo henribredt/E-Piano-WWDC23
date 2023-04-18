@@ -39,7 +39,8 @@ class AppState: ObservableObject {
     // used to track how many wrong answers were given, more than tree answers are wring it will activate help mode
     @Published var wrongAnswerCount: Int = 0
     
-    
+    // used to prevent users from manually progressing in the course while the system will automatically do this in 1.5s (if the user then presses the button a lesson would be skipped — so I prevent this)
+    @Published var blockContinue: Bool = false
     
     //MARK: functions
     

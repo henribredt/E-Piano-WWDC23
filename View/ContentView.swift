@@ -88,8 +88,10 @@ struct ContentView: View {
                                 
                                 MenuButtonView(label: "enter", isPowerButton: false) {
                                     if appState.isOn{
-                                        appState.currentMenuState.showNextMenuState()
-                                        SoundEngine.buttonSound()
+                                        if appState.blockContinue == false {
+                                            appState.currentMenuState.showNextMenuState()
+                                            SoundEngine.buttonSound()
+                                        }
                                     }
                                 }
                             }

@@ -54,10 +54,13 @@ struct NoteSheetView: View {
                         }
                         
                         // end
+                        
+                        appState.blockContinue = true // prevent the user from skipping a menu item while in auto transition mode
                         DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
                             SoundEngine.playCelebration()
                             DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
                                 appState.currentMenuState.showNextMenuState()
+                                appState.blockContinue = false
                             }
                         }
                     } else {

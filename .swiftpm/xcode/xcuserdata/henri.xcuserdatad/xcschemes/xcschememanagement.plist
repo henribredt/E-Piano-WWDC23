@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>E-Piano-WWDC23.swiftpm-Package.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>E-Piano-WWDC23.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>AppModule</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E-Piano-WWDC23</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E-Piano-WWDC23.swiftpm</key>
 		<dict>
 			<key>primary</key>
 			<true/>
