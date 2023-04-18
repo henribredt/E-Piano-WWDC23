@@ -8,3 +8,4 @@ This project utilises the following assets
 While creating the following tools we're of great help
 - SVG to SwiftUI Shape converter: https://svg-to-swiftui.quassum.com/ 
 
+Created by Henri Bredt as submission to the Apple Swift Student Challenge 2023

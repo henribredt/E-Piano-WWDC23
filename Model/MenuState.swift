@@ -23,9 +23,6 @@ struct MenuState {
         self.showNextMenuState = showNextMenuState
     }
     
-    
-    
-    
     let id: Int
     let view: AnyView // center view to show
     let notes: [Note]? // notes of current menu state
@@ -50,16 +47,12 @@ extension MenuState: Comparable {
     static func == (lhs: MenuState, rhs: MenuState) -> Bool {
         lhs.id == rhs.id
     }
-    
-    
 }
 
 extension MenuState {
     static var flow: [MenuState] = [
-        
-        // 0 - INFO
         MenuState(
-            id: 0,
+            id: 0,  // INFO
             view:
                 AnyView(
                     VStack(spacing: 6){
@@ -83,10 +76,8 @@ extension MenuState {
                 AppState.shared.currentMenuState = MenuState.flow[2]
             }
         ),
-        
-        // 1 - OFF
         MenuState(
-            id: 1,
+            id: 1, // OFF
             view: AnyView(EmptyView()),
             headerText: nil,
             helpPlayNotesLabel: false,
@@ -96,7 +87,7 @@ extension MenuState {
         ),
         
         MenuState(
-            id: 2,
+            id: 2, // HOME
             view:
                 AnyView(
                     VStack(spacing: 6){
@@ -121,7 +112,7 @@ extension MenuState {
             }
         ),
         MenuState(
-            id: 3,
+            id: 3, // COURSE START
             view:
                 AnyView(Text("Good to know before we start: You can adjust the keyboard size using the magnifying buttons and you can scroll the keyboard to make other keys visible. Make sure the Volume is turned up and your device is not muted.")),
             headerText: "Beginners Course: Learn how to play the Piano",

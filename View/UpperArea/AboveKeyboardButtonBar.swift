@@ -16,16 +16,16 @@ struct AboveKeyboardButtonBar: View {
             .padding(.leading)
             Spacer()
             
-            ResizingButtonView(sizeDivisor: $sizeDivisor, icon: "info.circle") {
+            AboveKeyboardButtonView(sizeDivisor: $sizeDivisor, icon: "info.circle") {
                 AppState.shared.showKeyboardHelpLabels.toggle()
             }
     
-            ResizingButtonView(sizeDivisor: $sizeDivisor, icon: "minus.magnifyingglass") {
+            AboveKeyboardButtonView(sizeDivisor: $sizeDivisor, icon: "minus.magnifyingglass") {
                 sizeDivisor += 0.5
             }
                 .disabled(sizeDivisor >= 6.5)
             
-            ResizingButtonView(sizeDivisor: $sizeDivisor, icon: "plus.magnifyingglass") {
+            AboveKeyboardButtonView(sizeDivisor: $sizeDivisor, icon: "plus.magnifyingglass") {
                 sizeDivisor -= 0.5
             }
                 .disabled(sizeDivisor <= 4)

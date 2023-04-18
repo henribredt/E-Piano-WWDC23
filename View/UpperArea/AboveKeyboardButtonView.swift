@@ -1,20 +1,14 @@
 import SwiftUI
 
-struct ResizingButtonView: View {
+struct AboveKeyboardButtonView: View {
     @Binding var sizeDivisor: CGFloat
     let icon: String
     let action: () -> ()
     
     var body: some View {
         Button {
-//            if isZoom {
-//                sizeDivisor -= 0.5
-//            } else {
-//                sizeDivisor += 0.5
-//            }
             action()
             SoundEngine.buttonSound()
-                
         } label: {
             Rectangle()
                 .fill(LinearGradient(
@@ -28,7 +22,6 @@ struct ResizingButtonView: View {
                         .stroke(Color("DarkGray"), lineWidth: 2)
                 )
                 .overlay(
-                   // Image(systemName: isZoom ? "plus.magnifyingglass" : "minus.magnifyingglass")
                     Image(systemName: icon)
                         .foregroundColor(Color("DarkGray"))
                         .font(.title3)

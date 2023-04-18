@@ -28,6 +28,7 @@ struct ContentView: View {
                                         appState.showHelp = false
                                         appState.showHelpLabels = appState.currentMenuState.showUIHelpLabels
                                     }
+                                
                                 // Menu
                                     .overlay{
                                         VStack {

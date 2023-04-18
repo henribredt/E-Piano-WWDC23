@@ -13,6 +13,8 @@ struct OctaveView: View {
     
     var body: some View {
         let width = drawingHeight*(135.0/578.0)
+        
+        // white keys
         HStack(spacing: 3){
             KeyView(kind: .white_r_cutout, label: "C\(getMarker(octave))", width: width, height: drawingHeight, note: Note(rawValue: "\(octave.rawValue)_C")!)
             KeyView(kind: .white_lr_cutout, label: "D", width: width, height:drawingHeight, note: Note(rawValue: "\(octave.rawValue)_D")!)
@@ -22,6 +24,8 @@ struct OctaveView: View {
             KeyView(kind: .white_lr_cutout, label: "A", width: width, height:drawingHeight, note: Note(rawValue: "\(octave.rawValue)_A")!)
             KeyView(kind: .white_l_cutout, label: "B", width: width, height: drawingHeight, note: Note(rawValue: "\(octave.rawValue)_B")!)
         }
+        
+        // black keys
         .overlay(alignment: .top) {
             HStack(spacing: 3) {
                 KeyView(kind: .black, label: "C#", width: width, height: drawingHeight, note: Note(rawValue: "\(octave.rawValue)_C_Sharp")!)

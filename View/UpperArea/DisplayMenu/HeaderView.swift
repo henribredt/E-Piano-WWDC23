@@ -14,6 +14,8 @@ struct HeaderView: View {
         VStack{
             if let headerText = appState.currentMenuState.headerText {
                 HStack{
+                    
+                    // last played note label
                     HStack(spacing: 4){
                         if appState.currentNoteToDisplay != nil {
                             Image(systemName: "music.note")
@@ -23,7 +25,8 @@ struct HeaderView: View {
                         Spacer()
                     }
                     .frame(width: 50)
-                    // reset label after one second
+                    
+                    // reset last played note label after one second
                     .task(id: appState.currentNoteToDisplay){
                         if appState.currentNoteToDisplay != nil {
                             DispatchQueue.main.asyncAfter(deadline: .now()+0.35){

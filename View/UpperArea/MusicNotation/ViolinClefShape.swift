@@ -1,9 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Henri Bredt on 17.04.23.
-//
+
+// created with https://svg-to-swiftui.quassum.com/
 
 import SwiftUI
 

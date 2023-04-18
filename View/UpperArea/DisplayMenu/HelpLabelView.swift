@@ -19,6 +19,8 @@ struct HelpLabelView: View {
             Text("Press")
             Text(appState.currentMenuState.helpLabel)
                 .font(.system(.caption2, design: .monospaced, weight: .medium))
+                .lineLimit(1)
+                .allowsTightening(true)
                 .padding(EdgeInsets(top: 3, leading: 9, bottom: 3, trailing: 9))
                 .overlay{
                     RoundedRectangle(cornerRadius: 100)

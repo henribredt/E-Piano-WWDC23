@@ -7,13 +7,7 @@
 
 import SwiftUI
 
-enum Key: String {
-    case white_r_cutout = "white_r_cutout"
-    case white_l_cutout = "white_l_cutout"
-    case white_lr_cutout = "white_lr_cutout"
-    case black = "black"
-}
-
+// Used to compose an Octave for the keyboard
 struct KeyView: View {
     
     @EnvironmentObject var appState: AppState
