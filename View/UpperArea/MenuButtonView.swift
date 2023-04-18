@@ -26,8 +26,8 @@ struct MenuButtonView: View {
                         if isPowerButton {
                             RoundedRectangle(cornerRadius: 100)
                             .frame(width: 55, height: 6)
-                            .foregroundColor(AppState.shared.isOn ? .red.opacity(0.8) : .gray.opacity(0.9))
-                            .shadow(color: .red.opacity(AppState.shared.isOn ? 0.8 : 0.0), radius: 3)
+                            .foregroundColor(AppState.shared.isOn ? Color("DarkerRed").opacity(0.8) : .gray.opacity(0.9))
+                            .shadow(color: Color("DarkerRed").opacity(AppState.shared.isOn ? 0.7 : 0.0), radius: 3)
                         }
                     }
             }
