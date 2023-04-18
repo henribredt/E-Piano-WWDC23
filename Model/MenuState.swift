@@ -77,7 +77,7 @@ extension MenuState {
                 ),
             headerText: nil,
             helpPlayNotesLabel: false,
-            helpLabel: "ENTER",
+            helpLabel: "INFO",
             helpDescription: "to dismiss.",
             showNextMenuState: {
                 AppState.shared.currentMenuState = MenuState.flow[2]

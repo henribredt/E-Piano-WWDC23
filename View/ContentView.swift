@@ -69,11 +69,19 @@ struct ContentView: View {
                                     if appState.currentMenuState.playingHelpAllowed() {
                                         appState.showHelp.toggle()
                                         SoundEngine.buttonSound()
+                                        return
                                     }
                                     
                                     if appState.currentMenuState == MenuState.flow[2] {
                                         appState.currentMenuState = MenuState.flow[0]
                                         SoundEngine.buttonSound()
+                                        return
+                                    }
+                                    
+                                    if appState.currentMenuState == MenuState.flow[0] {
+                                        appState.currentMenuState = MenuState.flow[2]
+                                        SoundEngine.buttonSound()
+                                        return
                                     }
                                 }
                                 
