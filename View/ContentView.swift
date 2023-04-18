@@ -56,6 +56,7 @@ struct ContentView: View {
                                     if appState.isOn {
                                         appState.isOn.toggle()
                                         appState.currentMenuState = MenuState.flow[1]
+                                        appState.reset()
                                         SoundEngine.buttonSound()
                                     } else {
                                         appState.isOn.toggle()

@@ -30,6 +30,19 @@ struct KeyView: View {
                 appState.currentNote = note
                 appState.currentNoteToDisplay = note
                 SoundEngine.play(note: note)
+                
+                // activate help when the wrong key is pressed repetitively
+                if appState.currentPracticeNote() != nil{
+                    if appState.currentNote != appState.currentPracticeNote() {
+                        appState.increaseWrongAnswerCount()
+                    } else if appState.wrongAnswerCount >= 3 {
+                            appState.wrongAnswerCount = 0
+                            appState.showHelp = false
+                    } else {
+                        // note was correct, reset wrongAnswerCount count
+                        appState.wrongAnswerCount = 0
+                    }
+                }
             } label: {
                 ZStack(alignment: .bottom){
                     Image(kind.rawValue)

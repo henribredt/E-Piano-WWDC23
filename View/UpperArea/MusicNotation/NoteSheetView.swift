@@ -64,7 +64,7 @@ struct NoteSheetView: View {
                         // next
                         appState.currentNote = nil
                     }
-                }
+                } 
             }
     }
     
