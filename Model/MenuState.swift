@@ -100,7 +100,7 @@ extension MenuState {
             view:
                 AnyView(
                     VStack(spacing: 6){
-                        Image(systemName: "pianokeys.inverse")
+                        Image(systemName: "pianokeys")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxHeight: 40)
@@ -180,7 +180,7 @@ extension MenuState {
         MenuState(
             id: 7,
             view:
-                AnyView(Text("While looking at the keyboard you might have noticed a pattern: The key arrangements and the notes are repetitive. Starting with the \"C\", after every seven white keys a new repetition begins. That's an Octave: The seven white keys represent the full-tones C, D, E, F, G, A and B. So there are Octaves with higher and lower pitches.")),
+                AnyView(Text("While looking at the keyboard you might have noticed a pattern: The key arrangements and the notes are repetitive. Starting with the \"C\", after every seven white keys a new repetition begins. That's an Octave: The seven white keys represent the full-tones C, D, E, F, G, A and B. There are Octaves with higher and lower pitches.")),
             headerText: "2. An Octave — Theory",
             helpPlayNotesLabel: false,
             helpLabel: "ENTER",
