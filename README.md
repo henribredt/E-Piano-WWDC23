@@ -13,6 +13,12 @@ A fun, retro-syle e-Piano that teaches how to read notes and play the piano. Cre
 * Help labels
 * Retro look-and-feel
 
+## Credtis
+
+- Piano Sounds: https://github.com/fuhton/piano-mp3 (MIT License)
+- Button Sounds: https://snd.dev/# SND01 "sine" by Yasuhiro Tsuchiya (Free for Personal and Commercial use)
+- SVG to SwiftUI Shape converter: https://svg-to-swiftui.quassum.com/
+
 ## Installation
 I'll published the app in the future on the App Store, until then you can clone this repository and run it on your iPad with the Swift Playgrounds app.
 If you clone this project from GitHub, you'll need to add **.swiftpm** to the enclosing folder in order to be able to open this project in Xcode or Swift Playgrouds.
