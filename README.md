@@ -9,6 +9,7 @@ A fun, retro-syle e-Piano that teaches how to read notes and play the piano. Cre
 * Help mode highlighting the next correct key
 * Scrollable and resizable keyboard
 * Help labels
+* Retro look-and-feel
 
 ## Installation
 I'll published the app in the future on the App Store, until then you can clone this repository and run it on your iPad with the Swift Playgrounds app.
