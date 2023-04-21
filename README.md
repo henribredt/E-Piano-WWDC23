@@ -1,9 +1,9 @@
 # E-Piano-WWDC23
 A fun, retro-syle e-Piano that teaches how to read notes and play the piano. Created as a Swift Student Challenge 2023 Submission by [Henri Bredt](https://henribredt.de) in April 2023.
 
-![Untitled 1](https://user-images.githubusercontent.com/57298155/233409352-db6ad4fa-307f-43fb-b920-8f48c322c789.png)
+**Watch the [Demo Video](https://youtu.be/0ZGPRZ1uUi0) on Youtube**
 
-*Demo Video comming soon*
+![Untitled 1](https://user-images.githubusercontent.com/57298155/233409352-db6ad4fa-307f-43fb-b920-8f48c322c789.png)
 
 ## Feautes
 * Free piano play
