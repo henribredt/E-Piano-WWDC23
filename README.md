@@ -6,7 +6,7 @@ A fun, retro-syle e-Piano that teaches how to read notes and play the piano. Cre
 
 ![Untitled 1](https://user-images.githubusercontent.com/57298155/233409352-db6ad4fa-307f-43fb-b920-8f48c322c789.png)
 
-## Feautes
+## Features
 * Free piano play
 * Interactive note reading and piano playing course
 * Help mode highlighting the next correct key
