@@ -1,5 +1,5 @@
 # E-Piano-WWDC23
-### A Swift Student Challenge Winner 2022 🎉
+### A Swift Student Challenge Winner 2023 🎉
 A fun, retro-syle e-Piano that teaches how to read notes and play the piano. Created as a Swift Student Challenge 2023 Submission by [Henri Bredt](https://henribredt.de) in April 2023.
 
 **Watch the [Demo Video](https://youtu.be/0ZGPRZ1uUi0) on Youtube**
